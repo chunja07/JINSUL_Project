@@ -128,7 +128,53 @@ Please follow the development introduction below.)
 	}
 ![image](https://user-images.githubusercontent.com/35492393/50625661-da9b3480-0f6c-11e9-8278-1e6b3987264d.png)
  
-> 로그인 접속 화면(로그인 틀릴시 Ajax로 구현)
+> 로그인 접속 화면
+
+public String login(HttpServletResponse response, Member member, Model model,
+			@CookieValue(value = "cookie") String cookieValue, HttpSession session, HttpServletRequest request, RedirectAttributes variable) {
+		// 입력한 정보의 아이디가 존재하는지 확인
+		Member isMember = loginservice.selectById(member);
+		// 존재한다면
+		if (isMember != null) {
+			// 패스워드 일치 로그인 성공
+			if (member.getMember_password().equals(isMember.getMember_password())) {
+				// main 페이지에서 c:if 로그인,로그아웃문 출력하기위해
+				model.addAttribute("LoginMember", true);
+				// session에 LGmember 저장
+				model.addAttribute("Member", isMember);
+				// 웹소켓 아이디값
+				session.setAttribute("loginMemberId", member.getMember_id());
+
+				System.out.println("소켓 모델의 session 값 : " + member.getMember_id());
+				Map<String, Object> modelMap = model.asMap();
+				System.out.println("모델의 session 값 : " + modelMap.get("Member"));
+
+				List<Follow> list = new ArrayList<>();
+				list = loginservice.followLoginSelect(isMember);
+						
+				System.out.println("로그인멤버 아이디: " + isMember.getMember_id());
+
+				return "redirect:/";
+			}
+			// 로그인 실패 횟수를 누적하기 위한 코드 (model.addAttribute("cookie",cookieValue) 까지)
+			int loginCount = Integer.parseInt(cookieValue);
+			loginCount++;
+			cookieValue = Integer.toString((loginCount));
+			System.out.println("cookieValue : " + cookieValue);
+			Cookie cookie1 = new Cookie("cookie", cookieValue);
+			response.addCookie(cookie1);
+			model.addAttribute("cookie", cookieValue);
+			// 5번 로그인 실패 시
+			if (loginCount >= 5) {
+				// loginUp.jsp 에 로그인 5회 입력 실패 입력되도록 model 에 저장 후 loginUp.jsp 파일에 c:if 문으로 출력
+				model.addAttribute("loginUp", true);
+				// 아이디 , 비밀번호 , 이메일 3가지 입력하는 곳으로 이동
+				return "login/loginUp";
+
+			}
+			// 패스워드가 틀림
+			model.addAttribute("pwNotM", true);
+			return "login/login";
 ![image](https://user-images.githubusercontent.com/35492393/50625725-38c81780-0f6d-11e9-9802-79bc0106affb.png)
 
 > 로그인 완료시 팔로우 회원 출력
