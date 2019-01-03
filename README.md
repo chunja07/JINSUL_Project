@@ -178,6 +178,32 @@ public String login(HttpServletResponse response, Member member, Model model,
 ![image](https://user-images.githubusercontent.com/35492393/50625725-38c81780-0f6d-11e9-9802-79bc0106affb.png)
 
 > 로그인 완료시 팔로우 회원 출력
+public String mainPage(Member member, Model model, HttpSession session) {
+		// 멤버가 로그인 했을 경우
+		if (session.getAttribute("Member") != null) {
+			Gson gson = new Gson();
+			Member loginMember = (Member) session.getAttribute("Member");
+			//  스토리에서 사진을 불러오기 위한 배열
+			List<FollowPic> list = new ArrayList<>();
+			list = loginservice.followedIdPic(loginMember);
+			System.out.println("list아이디 픽쳐에 관한 리스트?" + list);
+			
+			List<Follow> fList = new ArrayList<>();
+			fList = loginservice.followLoginSelect(loginMember);
+			List<String> sList = new ArrayList<>();
+			for (Follow follow : fList) {
+				sList.add(follow.getFollowed_id());
+			}
+			String gList = gson.toJson(fList);
+			model.addAttribute("sList", gList);
+			model.addAttribute("follow", list);
+			return "/user/page/main";
+			
+		} else {
+			model.addAttribute("first","뭐야");
+			return "/user/page/main";
+		}
+
 ![image](https://user-images.githubusercontent.com/35492393/50626250-7e3a1400-0f70-11e9-816f-ff09c3bc9e2c.png)
 
 > 로그인 시 검색화면에 팔로우 회원 표시
