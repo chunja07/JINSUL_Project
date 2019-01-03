@@ -279,6 +279,25 @@ Please follow the development introduction below.)
 ![image](https://user-images.githubusercontent.com/35492393/50626346-fc96b600-0f70-11e9-881f-2bf3d16235b5.png)
 
 >팔로워 및 팔로우 숫자 표시
+
+	<div class="userprofile-write row a">
+								<div class="num">
+									게시물<span> 0개</span>
+								</div>
+								<!-- 팔로워 목록을 보여주는 Div -->
+								<div class="num">
+									<span><a href="#myModalFollower" data-toggle="modal"
+										data-target="#myModalFollower" style="color: black;"
+										class="alink">팔로워 ${followed_Count}명</a></span>
+								</div>
+								<!-- 팔로잉 목록을 보여주는 Div -->
+								<div class="num">
+									<span><a href="#myModalFollowed" data-toggle="modal"
+										data-target="#myModalFollowed" style="color: black;"
+										class="alink">팔로잉 ${follower_Count}명</a></span>
+								</div>
+							</div>
+
 ![image](https://user-images.githubusercontent.com/35492393/50626356-159f6700-0f71-11e9-8668-701502986d7b.png)
 
 >프로필 편집 
