@@ -75,7 +75,7 @@ Please follow the development introduction below.)
 ![package](https://user-images.githubusercontent.com/35492393/50626154-fb18be00-0f6f-11e9-90d2-f44e75bc41d8.png)
 
 ## Front-End 주요 기능
-> 메인 페이지 검색(Java Resources/js/user/controller/MainPageController)
+> 메인 페이지 검색(JINSUL_Project/JS/src/main/java/js/user/controller/MainPageController.java)
  * 키 입력에 따른 회원 검색(View Page와 연동)
 
 ![image](https://user-images.githubusercontent.com/35492393/50625661-da9b3480-0f6c-11e9-8278-1e6b3987264d.png)
