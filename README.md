@@ -77,7 +77,55 @@ Please follow the development introduction below.)
 ## Front-End 주요 기능
 > 메인 페이지 검색(JINSUL_Project/JS/src/main/java/js/user/controller/MainPageController.java)
  * 키 입력에 따른 회원 검색(View Page와 연동)
+@ResponseBody
+	@RequestMapping(value = "/a/{search}", method = RequestMethod.POST)
+	public Map<String, List<Object>> search(Model model, HttpServletRequest request, HttpServletResponse response,
+			@PathVariable("search") String search, HttpSession session) throws Exception {
+		
+		Map<String, List<Object>> map = new HashMap<String, List<Object>>();
+		
+		// 웹페이지 검색에서 검색하는 String 값 
+		String searchNew = search + "%";		
+		System.out.println(searchNew);
+		// 로그인 하지 않았을 경우
+		if(session.getAttribute("Member") == null) {
+		
+		// 소개글 가져오기 위한 리스트 배열
+		List<Object> list = new ArrayList<>();
+		
+		// 문자열을 지닌 아이디값을 지닌 멤버의 정보를 불러옴
+		try {
+			list = loginservice.memberIntroAll(searchNew);						
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		System.out.println(list);
+		map.put("member", list);		
 
+		return map; 
+		
+		// 로그인 했을 경우
+		} else {
+			
+			List<Object> list = new ArrayList<>();
+			List<Object> fList = new ArrayList<>();			
+			Member member = new Member();			
+			member = (Member) session.getAttribute("Member");
+			try {
+				// 아이디 값에 해당하는 멤버 정보의 소개가 있는 테이블의 리스트
+				list = loginservice.memberIntroAll(searchNew);
+				// 아이디 값에 해당하는 멤버가 팔로우하는 아이디의 리스트
+				fList = loginservice.followedLoginSelect(member);
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+			map.put("member", list);
+			map.put("followed", fList);
+											
+			return map;
+		}
+		
+	}
 ![image](https://user-images.githubusercontent.com/35492393/50625661-da9b3480-0f6c-11e9-8278-1e6b3987264d.png)
  
 > 로그인 접속 화면(로그인 틀릴시 Ajax로 구현)
