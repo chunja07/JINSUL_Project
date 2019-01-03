@@ -209,6 +209,69 @@ Please follow the development introduction below.)
 ![image](https://user-images.githubusercontent.com/35492393/50626250-7e3a1400-0f70-11e9-816f-ff09c3bc9e2c.png)
 
 > 로그인 시 검색화면에 팔로우 회원 표시
+
+	$(document).ready(function(){	
+			
+			$("#inputsearch").keyup(function() {	
+			$('#test').show();	
+			$('#memberListTable').html('');
+			var	search =  $("#inputsearch").val();
+			
+			var first = $("#first").val();
+			console.log(first);
+			
+			if($('#first').val()=="")	{	
+			
+			$.ajax({
+				type : "POST",
+				url : "${pageContext.request.contextPath}/a/"+search,
+				dataType : "json",					
+				success : function(result) {
+					console.log(result)
+					console.log(result.member);
+					console.log(result.followed);
+					if(result.member.length != 0){
+					$.each(result.member, function(index, i){
+						var check;
+						var member_id = i.member_id;
+						console.log(member_id);					
+						
+						$.each(result.followed, function(index, m){
+							var followed_id = m.followed_id
+							if(member_id==followed_id)
+								check = true;								
+						});
+						
+						if(check){
+						var contents = "<tr i class = \"memberContens\" data-href= \"${pageContext.request.contextPath}/userprofile/"+i.member_id+"\">";								
+						contents +="<td style = 'width : 120px;'><div class=\"user_profile_picture col-md-4\"><a href = \"${pageContext.request.contextPath}/userprofile/"+i.member_id+"\"><img src = \""+ i.member_profile_pic + "\"  style = \"width:70px; height:70px;\"/></div></a></td>";
+						contents +="<td><a href = \"${pageContext.request.contextPath}/userprofile/"+i.member_id+"\">"+i.member_id+"</a>";
+						contents +="<span>팔로우중</span>";
+						contents +="<br><span style = 'font-size:14px;'>"+i.introduction+"</span></td>";
+						contents +="</tr>";											
+						} else {
+							var contents = "<tr i class = \"memberContens\" data-href= \"${pageContext.request.contextPath}/userprofile/"+i.member_id+"\">";								
+							contents +="<td style = 'width : 120px;'><div class=\"user_profile_picture col-md-4\"><a href = \"${pageContext.request.contextPath}/userprofile/"+i.member_id+"\"><img src = \""+ i.member_profile_pic + "\"  style = \"width:70px; height:70px;\"/></div></a></td>";
+							contents +="<td><a href = \"${pageContext.request.contextPath}/userprofile/"+i.member_id+"\">"+i.member_id+"</a>";
+							contents +="<br><span style = 'font-size:14px;'>"+i.introduction+"</span></td>";
+							contents +="</tr>";	
+						}				
+						var intro = i.introduction
+						console.log(intro);					
+												
+						var tr = document.querySelectorAll('tr');
+						if(tr.length<3){
+							$('#test').css('overflow', 'hidden');
+						} else {
+							$('#test').css('overflow', 'hidden scroll');
+						}
+														
+						$("#memberListTable").append(contents);		
+						
+						$(".memberContens").click(function(){
+							window.location = $(this).data("href");
+						});
+					});	
 ![image](https://user-images.githubusercontent.com/35492393/50626302-c5c0a000-0f70-11e9-847d-004c20bfaeaa.png)
 
 >유저 프로필 화면
