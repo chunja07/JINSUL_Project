@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="commentMapper">
+  <select id="selectComment" resultType="Comment">
+  select * from comment;
+  </select>
+  <select id="selectCommentIfNull" parameterType="Comment" resultType="Comment" >
+  select * from comment where content_id = #{content_id} order by ifnull(comment_parents_id,comment_id);
+  </select>
+  
+  </mapper>

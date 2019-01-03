@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="js.user.model.rv_boardMapper">
+   <select id="rv_board" resultType="Rv_Board">
+   		select * from rv_board
+   
+   </select>
+   	
+   
+   </mapper>

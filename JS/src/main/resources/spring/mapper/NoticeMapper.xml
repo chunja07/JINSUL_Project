@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="NoticeMapper">
+	
+	
+	<select id="page" parameterType="map" resultType="Notice">
+		select * from notice limit #{start}, #{end}
+	</select>
+	
+	<select id="count" resultType="java.lang.Integer">
+		select count(*) from notice
+	</select>
+	
+	<insert id = "insert" parameterType="Notice">
+		insert into notice
+		( notice_title, notice_content, notice_img, notice_date, member_id )
+		values (#{notice_title}, #{notice_content}, #{notice_img}, #{notice_date}, #{member_id})
+	</insert>
+	
+	<delete id="deleteOne" parameterType="Notice">
+		delete from notice
+		where notice_id in (#{notice_id})
+	</delete>
+	
+	<select id = "oneRecord" parameterType="Notice" resultType="Notice">
+		select * from notice
+		where notice_id = #{notice_id}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <welcome-file-list>
+    <welcome-file>main.jsp</welcome-file>
+  </welcome-file-list>
+  <display-name>JJJ</display-name>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/application-config.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/mvc-config.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>loginFilter</display-name>
+    <filter-name>loginFilter</filter-name>
+    <filter-class>js.user.filter.loginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>/message</url-pattern>
+    <url-pattern>/message/send</url-pattern>
+    <url-pattern>/message/sendMessageStore</url-pattern>
+    <url-pattern>/message/receiveMessageStore</url-pattern>
+    <url-pattern>/checkPw</url-pattern>
+    <url-pattern>/update</url-pattern>
+    <url-pattern>/update/password</url-pattern>
+    <url-pattern>/update/phoneNum</url-pattern>
+    <url-pattern>/update/email</url-pattern>
+    <url-pattern>/update/address</url-pattern>
+    <url-pattern>/update/profile</url-pattern>
+    <url-pattern>/update/deleteMember</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>privacyFilter</display-name>
+    <filter-name>privacyFilter</filter-name>
+    <filter-class>js.user.filter.privacyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>privacyFilter</filter-name>
+    <url-pattern>/update</url-pattern>
+    <url-pattern>/update/password</url-pattern>
+    <url-pattern>/update/phoneNum</url-pattern>
+    <url-pattern>/update/email</url-pattern>
+    <url-pattern>/update/address</url-pattern>
+    <url-pattern>/update/profile</url-pattern>
+    <url-pattern>/update/deleteMember</url-pattern>
+  </filter-mapping>
+</web-app>

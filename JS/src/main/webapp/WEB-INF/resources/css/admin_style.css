@@ -1,0 +1,39 @@
+
+html { width: 100%;}
+#wrap {  width: 80%; margin: 0 auto;  font-size: 12px;  color:#67b9ea; }
+.row { *zoom: 1; margin: 0px; }
+.row:after { clear: both; content: ""; display: block; }
+.container { margin:0 auto; }
+.alink { text-decoration:none!important; color: #67b9ea; }
+.alink:hover { text-decoration:none!important; color: #67b9ea; }
+input { outline-style: none; }
+ul, li { list-style: none; }
+
+header{ position: fixed; top: 0; z-index: 999; background: white; width: 100%; padding-top: 10px;}
+
+
+#adminpage { margin-top: 200px; }
+#adminpage .admin_main_left { float: left;}
+#adminpage .admin_main_right { float: left; }
+
+
+
+#adminpage .tables { margin-bottom: 20px;  text-align: center; }
+#adminpage .tables table { width:100%; margin:0 auto; font-size: 8px;  margin-bottom:30px; border-collapse: collapse;     text-align: center;}
+#adminpage .tables table tr > th { border-bottom: 1px solid #e7e7e7; border-top: 1px solid #e7e7e7; text-align: center; } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{ position: fixed; bottom: 0; z-index: 9999; background: white; width: 100%;}
+footer .f_menu {}
+footer .f_menu > .icons { float: right; padding: 10px; font-size: 8px; }

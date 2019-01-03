@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="js.admin.model.LocationMapper">
+ 	
+ 	<insert id="location" parameterType="map" >
+ 		insert into location values ('${province}', '${district}') 
+  	</insert>
+  	
+ 	<select id="select" resultType="location">
+ 		select * from location
+ 	</select>
+ 	
+ </mapper>

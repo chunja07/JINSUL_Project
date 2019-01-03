@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="ADMemberMapper">
+	
+	<select id="userList" resultType="ADMember">
+		select * 
+		from member
+		order by member_register_date desc
+	</select>
+	
+	
+		
+	<select id="page" parameterType="map" resultType="ADMember">
+		select * from member limit #{start}, #{end}
+	</select>
+	
+	<select id="count" resultType="java.lang.Integer">
+		select 	count(*) from member
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+

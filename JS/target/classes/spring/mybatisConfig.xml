@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+	<configuration>
+	
+	<typeAliases>
+  		<typeAlias type="js.admin.model.Location" alias="location"/>
+  		<typeAlias type="js.admin.model.Street" alias="street"/>
+  		<typeAlias type="js.user.model.Rv_Board" alias="rv_board"/>
+  		<typeAlias type="js.user.model.Member" alias="Member" />
+		<typeAlias type="js.user.model.Comment" alias="Comment"/>
+		<typeAlias type="js.user.model.Message" alias="Message"/>
+		<typeAlias type="js.user.model.Follow" alias="Follow"/>
+		<typeAlias type="js.user.model.FollowMemberPic" alias="FollowMemberPic"/>
+		<typeAlias type="js.user.model.Introduction" alias="Introduction"/>
+		<typeAlias type="js.user.model.FollowPic" alias="FollowPic"/>
+		<typeAlias type="js.user.model.MemberIntroAll" alias="MemberIntroAll"/>
+  		<typeAlias type="js.admin.model.Member" alias="ADMember"/>
+  		<typeAlias type="js.admin.model.Notice" alias="Notice"/>
+  		<typeAlias type="js.admin.model.Question" alias="Question"/>
+  		<typeAlias type="js.user.model.memberUpdate" alias="memberUpdate"/>	
+  	</typeAliases>
+  	  	
+	</configuration>
+
+	
+  
+  	
+  	
+  	
+ 

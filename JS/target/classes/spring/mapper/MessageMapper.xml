@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="MessageMapper">
+    <insert id="sendMessage" parameterType="Message">
+    insert into sendMessage values(message_id,#{member_id},#{member_receiver},#{message_content},#{message_picture},#{message_profil_pic},#{message_send_date})
+    </insert>
+    <insert id="receiveMessage" parameterType="Message">
+    insert into receiveMessage values(message_id,#{member_id},#{member_receiver},#{message_content},#{message_picture},#{message_profil_pic},#{message_send_date})
+    </insert>
+    
+    <select id="sendMessageStore" parameterType="Member" resultType="Message">
+    select * from sendMessage where member_id = #{member_id}
+    </select>
+    <select id="receiveMessageStore" parameterType="Message" resultType="Message">
+    select * from receiveMessage where member_receiver = #{member_receiver}
+    </select>
+    <delete id="deleteReceiveMessage" parameterType="Message">
+    delete from receiveMessage where member_receiver = #{member_receiver} and message_id=#{message_id}
+    </delete>
+
+    <delete id="deleteSendMessage" parameterType="Message">
+    delete from sendMessage where member_id = #{member_id} and message_id=#{message_id}
+    </delete>
+    
+    </mapper>
+    

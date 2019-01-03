@@ -1,0 +1,7 @@
+html { width: 100%; }
+.row { *zoom: 1; }
+.row:after { clear: both; content: ""; display: block; }
+#wrap {}
+.container { width: 1800px;	margin: 0 auto; }
+.alink { text-decoration:none; color: black; }
+

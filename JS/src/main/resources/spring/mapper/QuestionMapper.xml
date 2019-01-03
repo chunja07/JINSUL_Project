@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="QuestionMapper">
+	
+	<!-- 게시물 정보 -->
+	<select id="page" parameterType="map" resultType="Question">
+		select * from question limit #{start}, #{end}
+	</select>
+	<!-- 페이지카운트 -->
+	<select id="count" resultType="java.lang.Integer">
+		select count(*) from question
+	</select>
+	
+	<!-- 개인 게시글 보기 -->
+	<select id="user_post" parameterType="map" resultType="Question"> 
+		select * from question where member_id = #{member_id} limit #{user_start}, #{user_end}
+	</select>
+	
+	<!-- 문의하기 -->
+	<insert id = "insert" parameterType="Question">
+		insert into question
+		( question_title, question_content, question_date, member_id )
+		values (#{question_title}, #{question_content}, #{question_date}, #{member_id})
+	</insert>
+	
+	<!-- 게시글info -->
+	<select id = "oneRecord" parameterType="Question" resultType="Question">
+		select * from question
+		where question_id = #{question_id}
+	</select>
+	
+	<!-- 해당 게시글에 대한 댓글 -->
+	<select id = "selectcomment" parameterType="map" resultType="Question">
+		select * from comment 
+		where question_id = #{question_id};
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+

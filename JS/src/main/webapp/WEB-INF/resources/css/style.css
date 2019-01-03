@@ -1,0 +1,182 @@
+
+html { width: 100%;}
+#wrap {  width: 80%; margin: 0 auto;  font-size: 12px;  color:#67b9ea; }
+.row { *zoom: 1; margin: 0px; }
+.row:after { clear: both; content: ""; display: block; }
+.container { margin:0 auto; }
+.alink { text-decoration:none!important; color: #67b9ea; }
+.alink:hover { text-decoration:none!important; color: #67b9ea; }
+input { outline-style: none; }
+section {margin-bottom: 100px;}
+
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4,
+.col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10,
+.col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
+.col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12,
+.col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8,
+.col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3,
+.col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 
+	{  padding-right: 0px; padding-left: 0px; padding-top: 0px; padding-bottom: 0px;
+			border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 0px;
+	}
+
+
+header{ position: fixed; top: 0; z-index: 9999; background: white; width: 100%; padding-top: 10px;}
+header .logo{ float: left; }
+header .logo img { width: 100%; }
+header .search{ float: left; text-align: center; padding: 38px; }
+header .search > input { border: 1px solid #67b9ea; }
+header .search > button { border: 0px; background: white;}
+header .search > button > i { padding: 5px; color: #67b9ea;}
+header .icons{ float: left; padding: 38px;}
+header .icons > .icon { float: right;  margin-left: 10px;}
+header .icons > .icon  i { padding: 10px; font-size: 15px; color: #67b9ea; }
+header .memberContens:hover {background-color: #f5f5f5;}
+header .memberContens:focus {background-color: #f5f5f5;}
+header .memberListTable {width:280px}
+
+.bx-wrapper { margin: 0px; box-shadow: 0 0 5px #67b9ea; border: 0px; }
+.bx-wrapper > .bx-controls > .bx-pager{ bottom: 5px;}
+.bx-wrapper .bx-controls-direction a { z-index: 999; }
+
+#main { background: #fafafa; margin-top: 100px; }
+#main .main_left { float: left; margin-top: 40px; }
+#main .main_right { float: left; margin-top: 40px; }
+#main .best_user { margin-bottom: 50px; }
+#main .main_left .imgbox{ overflow: hidden; }
+#main .main_left .imgbox img { width: 100%; height: auto;}
+#main .icons > .icon { padding: 5px; }
+#main .icons > .icon i { font-size: 20px;  color: #67b9ea; }
+#main .icons > .icon_l { float: left;}
+#main .icons > .icon_r { float: right;}
+
+#main .like { font-weight: bold;}
+
+ 
+#main .main_left .posts { border-radius: 3px; box-shadow: 0 0 5px #67b9ea;}
+#main .main_left .posts .sub_title { padding: 5px;}
+#main .main_left .posts .sub_title .user_id {font-size: 20px; padding : 5px; text-decoration:none; color: #67b9ea;}
+#main .main_left .posts .ripples { }
+#main .main_left .posts .ripples .ripple > .id{ float: left; margin-right: 10px; }
+#main .main_left .posts .ripples .ripple > .Posts_ripple{ float: left; }
+#main .main_left .posts .ripples .ripple > .like_btn{ float: right; }
+#main .main_left .posts .ripples .more_ripple { color: #FFBA46;}
+#main .main_left .posts .posts_bottom { padding: 0px 20px; }
+#main .main_left .posts .animated-width { margin-bottom: 10px; }
+#main .main_left .posts .posts_bottom .l_text { float: left;  }
+#main .main_left .posts .posts_bottom .l_text input {border: 0px; width: 90%; padding: 8px;  background: #fafafa; }
+#main .main_left .posts .posts_bottom .r_btn { float: right; }
+#main .main_left .posts .posts_bottom .r_btn > .btn { background-color: #67b9ea; color: #FFBA46; }
+
+#main .main_right { padding: 30px; }
+#main .main_right .user_info { margin-bottom: 10px; }
+#main .main_right .user_info .user_profile_photo{ float: left; border-radius: 50px; border: 1px solid #67b9ea; text-align: center;  overflow: hidden; width:100px; height:100px;}
+#main .main_right .user_info .user_profile_photo i { font-size: 65px; }
+#main .main_right .user_info .id_name { float: left; padding: 0px 10px; }
+#main .main_right .user_info .id_name .user { font-weight: bold; padding: 5px;}
+#main .main_right .user_info .id_name .name { padding: 5px; }
+#main .main_right .storys { background: white; border-radius: 5px; border: 1px solid #eee; margin-bottom: 20px; }
+#main .main_right .storys .top { padding: 10px; }
+#main .main_right .storys .top .title { float: left; }
+#main .main_right .storys .top .more { float: right; }
+#main .main_right .storys .body { padding: 10px; }
+#main .main_right .storys .body .user .user_profile_photo { float: left; }	
+#main .main_right .storys .body .user .user_profile_photo i	{ font-size: 35px;}
+#main .main_right .storys .body .user .id_name { float: left; }
+#main .main_right .story  .user_profile_photo{ float: left; border-radius: 50px; border: 1px solid #67b9ea; text-align: center;  overflow: hidden; width:75px; height:75px;}
+#main .main_right .story  .user_profile_photo i { font-size: 65px; }
+#main .main_right .story { padding: 10px; margin-bottom: 10px;}
+#main .main_right .maps { background: white; border-radius: 5px; border: 1px solid #eee; }
+#main .main_right .maps .top { padding: 10px; }
+#main .main_right .maps .top .title { float: left; }
+#main .main_right .maps .top .more { float: right; }
+#main .main_right .maps .map {width: 100%; margin: 20px 0px; }
+#main .main_right .maps .map img {width: 100%; }
+#main .main_right .loginentrance .search  {padding-top: 5px;}
+
+#userpage {background: #fafafa; margin-top : 150px;}
+#userpage .profile_header {background: #fafafa; margin-top : 10px; padding: 38px;}
+#userpage .profile_header .a {padding: 5px; padding-left: 0px;}
+#userpage .profile_header .num {padding: 5px; padding-left: 0px; padding-right: 15px;}
+#userpage .userprofile-name {font-size : 20px; float : left;}
+#userpage .userprofile-name  .num { float : left;}
+#userpage .userprofile-picture {font-size : 20px; float : left;}
+#userpage .user_profile_picture{ float: left; border-radius: 50px; border: 1px solid #67b9ea; text-align: center;  overflow: hidden; width:100px; height:100px; margin-right:50px; }
+#userpage .user_profile_picture i { font-size: 65px; }
+
+#wrap .user_profile_picture{ float: left; border-radius: 50px; border: 1px solid #67b9ea; text-align: center;  overflow: hidden; width:70px; height:70px; margin-right:50px; }
+#wrap .user_profile_picture i { font-size: 65px; }
+
+
+#login { text-align: center;} 
+#login .bg { }  
+#login .input_container { margin:0 auto; padding: 20%; }
+#login .title { background: #ffe2e8 ; color:#7d7d7d; font-size: 30px; margin: 0px auto;}
+#login .login_div { background: white;   background-color: rgba( 255, 255, 255, 0.5 ); border: 3px solid #7d7d7d; margin-top: 30px; padding: 30px; } 
+#login .login_div .inputmember { }
+#login .login_div .inputmember .div_center { width: 170px;  margin: 0 auto; }
+#login .login_div .inputmember .id_pw_input { margin-top: 20px; }
+#login .login_div .inputmember .id_pw_input input { background: #efefef; color:#7d7d7d; border:0px; padding: 10px; box-shadow: -1px -1px 1px grey; }
+#login .login_div a { color:#7d7d7d; text-decoration:none!important; }
+#login .login_div .inputmember .login_footer { margin: 0 auto; margin-top: 10px;}
+#login .login_div .inputmember .login_footer .searchs { margin-bottom: 10px; }
+#login .login_div .inputmember .login_footer .id_search { float: left; }
+#login .login_div .inputmember .login_footer .pw_search { float: right; }
+
+
+#regist { width: 50%; margin: 0 auto; }
+#regist label { width: 90px; }
+
+#loginUp { width: 60%; margin: 0 auto; }
+#loginUp .FC_B{ width:265px; }
+#loginUp .div_line { margin-bottom: 20px; }
+#loginUp .no_margin { margin:0px;}
+#loginUp .btn { padding: 0px; }
+#loginUp .login_btn { }
+#loginUp .login_btn .l_btn { margin-bottom: 15px; width: 265px; }
+
+#privacy { width: 50%; margin: 0 auto; }
+#privacy label{width:90px;}
+#privacy .FC_B{ width:100px; }
+#privacy .div_line { margin-bottom: 20px; }
+#privacy .no_margin { margin:0px;}
+#privacy .btn { padding: 0px; }
+
+#message { width: 50%; margin: 0 auto; }
+#message label{width:90px;}
+#message .FC_B{ width:100px; }
+#message .div_line { margin-bottom: 20px; }
+#message .no_margin { margin:0px;}
+#message .btn { padding: 0px; }
+
+
+#login .login_div .login_btn {  background: #ffbdcb; margin-bottom: 20px; padding: 5px; }
+#login .login_div .login_btn input { color: white;  background: none; border: 0px; }
+#login .login_div .regist { margin-bottom: 20px; }
+
+
+#userpage {background: #fafafa; margin-top : 150px;}
+#userpage .userprofile-name {font-size : 20px; float : left;}
+#userpage .userprofile-name  .num { float : left;}
+#userpage .userprofile-picture {font-size : 20px; float : left;}
+#userpage #review {padding: 5px;}
+#userpage .reviewDiv {padding: 0px 80px 80px 0px; float : left;}
+
+
+#servicecenter { margin-top: 200px; }
+#servicecenter .tables { margin-bottom: 20px;  text-align: center; }
+#servicecenter .tables table { width:90%; margin:0 auto; line-height:40px; margin-bottom:30px; border-collapse: collapse; }
+#servicecenter .tables table tr > th { border-bottom: 1px solid #e7e7e7; border-top: 1px solid #e7e7e7; text-align: center; } 
+
+#servicecenter .comment > div { float: left;}
+#servicecenter .comment .comment_id { }
+#servicecenter .comment .comment_content{ }
+#servicecenter .comment .comment_date{ }
+#servicecenter .comment .btns{ }
+#servicecenter .comment .btns .l_btn { float: left; }
+#servicecenter .comment .btns .r_btn { float: left; }
+
+footer{ position: fixed; bottom: 0; z-index: 9999; background: white; width: 100%;}
+footer .f_menu {}
+footer .f_menu > .icons { float: right; padding: 10px; font-size: 8px; }

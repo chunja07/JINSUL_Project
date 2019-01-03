@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 멤버 테이블 private String member_id; private String member_password; private 
+	String member_name; private String member_birthday; private String member_gender; 
+	private String member_phone; private String member_address; private int trip_exp; 
+	private String member_register_date; private String member_profile_pic; private 
+	String member_email; private String member_Zip_code; private String member_Street_name_address; 
+	private String member_Detailed_Address; // 0 이면 사용자 1이면 어드민 private int member_type; -->
+<mapper namespace="MemberMapper">
+
+	<!-- 회원가입시 아이디 중복하는지 확인 -->
+	<select id="selectById" parameterType="Member"
+		resultType="Member">
+		select * from member where member_id = #{member_id}
+	</select>
+	<!-- 로그인 시 아이디를 통해 안드로이드앱으로 JSON 파일롤 멤버 정보를 넘겨주는 명령문-->
+	<select id="selectByUser" parameterType="Member"
+		resultType="Member">
+		select * from member where member_id = #{member_id}
+	</select>
+	<!-- 비밀번호 변경할 현재 사용자 선택 -->
+	<select id="selectByPw"
+		parameterType="js.user.model.memberUpdate" resultType="Member">
+		select * from
+		member where member_id=#{member_id} and
+		member_password=#{current_member_password}
+	</select>
+	<!-- 회원 추가 -->
+	<insert id="insertM" parameterType="Member">
+		insert into member values
+		(#{member_id},#{member_password},#{member_name},#{member_birthday},#{member_gender},
+		#{member_phone},#{member_trip_exp},#{member_register_date},#{member_updatePassword_date},#{member_updatePhoneNum_date},#{member_updateEmail_date},
+		#{member_updateAddress_date},#{member_updateProfile_date},#{member_profile_pic},#{member_email},#{member_Zip_code},#{member_Street_name_address},
+		#{member_Detailed_Address},#{member_type})
+	</insert>
+	
+	<!-- 안드로이드 앱 회원 추가 -->
+	<insert id="insertAndroidMember" parameterType="Member">
+		insert into member(member_id, member_password, member_name, member_birthday, member_gender, member_phone, member_trip_exp, member_email, member_Zip_code, member_Street_name_address, member_register_date, member_profile_pic) values
+		(#{member_id},#{member_password},#{member_name},#{member_birthday},#{member_gender}, '업데이트예정', 0, '업데이트예정', '업데이트예정', '업데이트예정', #{member_register_date}, #{member_profile_pic})
+	</insert>
+
+	<!-- 비밀번호 바꾸기 -->
+	<update id="updateM" parameterType="js.user.model.memberUpdate">
+		update member set
+		member_password =#{new_member_password} where
+		member_password =
+		#{current_member_password}
+	</update>
+
+	<!-- 아이디 찾기 -->
+	<select id="selectPhoneNum" parameterType="Member"
+		resultType="Member">
+		select * from member where member_phone = #{member_phone}
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="findMyPw" parameterType="Member" resultType="Member">
+		select *
+		from member where member_id =#{member_id} and member_email =
+		#{member_email}
+	</select>
+
+	<!-- 회원 탈퇴 (외래키 속성때문에 아래서부터 하나씩 지워야 해당 member_id 삭제 가능) -->
+	<delete id="deleteMember" parameterType="Member">
+		delete from member where
+		member_id = #{member_id}
+	</delete>
+
+    <!-- 로그인 5회 누적되어 보안강화된 페이지에서 하기위한 것 -->
+    <select id="loginUp" parameterType="Member" resultType="Member">
+    select * from member where member_id = #{member_id} and member_password =#{member_password}
+    </select>
+
+	<!-- 비밀번호 바꾸기 -->
+	<update id="updatePassword"
+		parameterType="js.user.model.memberUpdate">
+		update member set member_password
+		=#{new_member_password},
+		member_updatePassword_date=#{member_updatePassword_date} where
+		member_password = #{current_member_password}
+	</update>
+
+	<!-- 연락처 수정 -->
+	<update id="updatePhoneNum" parameterType="Member">
+		update member set
+		member_phone=#{member_phone},
+		member_updatePhoneNum_date=#{member_updatePhoneNum_date} where
+		member_id=#{member_id}
+	</update>
+
+	<!-- 이메일 수정 -->
+	<update id="updateEmail" parameterType="Member">
+		update member set
+		member_email=#{member_email},member_updateEmail_date=#{member_updateEmail_date}
+		where member_id=#{member_id}
+	</update>
+
+	<!-- 주소 수정 -->
+	<update id="updateAddress" parameterType="Member">
+		update member set
+		member_updateAddress_date=#{member_updateAddress_date},
+		member_Zip_code=#{member_Zip_code},
+		member_Street_name_address=#{member_Street_name_address},
+		member_Detailed_Address=#{member_Detailed_Address} where member_id
+		=#{member_id}
+	</update>
+
+	<!-- 프로필 수정 -->
+	<update id="updateProfile" parameterType="Member">
+		update member set
+		member_updateProfile_date=#{member_updateProfile_date},
+		member_profile_pic = #{member_profile_pic} where
+		member_id=#{member_id}
+	</update>
+
+
+	<!-- 회원 검색 기능 -->
+	<select id="searchById" parameterType="list" resultType="Member">
+		select *
+		from member where member_id like CONCAT('%',#{searchKeyword},'%')
+	</select>
+
+	<!-- 회원 및 사진 검색 기능 -->
+	<select id="searchByIdPic" parameterType="list"
+		resultType="Member">
+		select member_id, member_profile_pic from member where
+		member_id like
+		CONCAT('%',#{searchKeyword},'%')
+	</select>
+
+	<!-- 회원 및 사진 검색 기능 -->
+	<select id="searchByUser" parameterType="Member"
+		resultType="Member">
+		select * from member where member_id =
+		CONCAT('%',#{searchKeyword},'%')
+	</select>
+
+	<!-- 팔로워 추가 -->
+	<insert id="follow" parameterType="map">
+		insert into follow
+		values(#{param1}, #{param2}, 'yes')
+
+	</insert>
+
+	<!-- 팔로워 상태 -->
+	<select id="followState" parameterType="Member"
+		resultType="Follow">
+		select * from follow where follower_id = #{member_id}
+	</select>
+
+	<!-- 팔로워 지우기 -->
+	<delete id="followDelete" parameterType="map">
+		delete from follow where
+		follower_id = #{param1} and followed_id = #{param2}
+	</delete>
+
+	<!-- 팔로워 전체 상태 -->
+	<select id="followSelect" resultType="Follow">
+		select * from follow
+	</select>
+	<!-- 팔로우 목록 리스트로 불러오기 -->
+	<select id="followLoginSelect" parameterType="List"
+		resultType="Follow">
+		select * from follow where follower_id = #{member_id}
+	</select>
+	
+	<!-- Json으로 팔로워 하는 아이디 받아오는 것 -->
+		<select id="followedLoginSelect" parameterType="List"
+		resultType="Follow">
+		select followed_id from follow where follower_id = #{member_id}
+	</select>
+	
+	<!-- 팔로우 목록 리스트로 불러오기 -->
+	<select id="followedSelect" parameterType="List"
+		resultType="Follow">
+		select * from follow where followed_id = #{member_id}
+	</select>
+	<!-- 팔로워 숫자 -->
+	<select id="followed_Count" parameterType="Member"
+		resultType="java.lang.Integer">
+		select count(*) from follow where followed_id =
+		#{member_id};
+	</select>
+
+	<!-- 팔로잉 숫자 -->
+	<select id="follower_Count" parameterType="Member"
+		resultType="java.lang.Integer">
+		select count(*) from follow where follower_id =
+		#{member_id};
+	</select>
+
+	<!-- 로그인 한 사람이 팔로우하는 사람의 사진을 얻어 오기 위한 쿼리문 -->
+	<select id="followMemberPic" parameterType="List"
+		resultType="FollowMemberPic">
+		select * from followMemberPic where follower_id =
+		#{member_id}
+	</select>
+
+	<!-- 아이디별 소개 불러오기 -->
+	<select id="introSelect" parameterType="Member"
+		resultType="Introduction">
+		select * from introduction where member_id = #{member_id}
+	</select>
+
+	<!-- 자기 소개 수정 -->
+	<update id="introUpdate" parameterType="Introduction">
+		update introduction set
+		introduction = #{introduction} where member_id = #{member_id}
+	</update>
+
+	<!-- 팔로워 아이디 및 사진 셀렉트 -->
+	<select id="followerIdPic" parameterType="list"
+		resultType="FollowPic">
+		select * from FollowPic where followed_id = #{member_id}
+	</select>
+
+	<!-- 팔로잉 아이디 및 사진 셀렉트 -->
+	<select id="followedIdPic" parameterType="list"
+		resultType="FollowPic">
+		select * from FollowPic where follower_id = #{member_id}
+	</select>
+	
+
+	<!-- 검색 시 멤버 클래스의 정보와 소개를 합한 테이블의 클래스인 memberIntroAll 클래스를 셀렉트 하는 메서드 -->
+	<select id="memberIntroAll" parameterType="List"
+		resultType="MemberIntroAll">
+		select * from MemberIntroAll where member_id like CONCAT('%',#{searchKeyword},'%')
+	</select>
+	
+	
+	<!-- 로그인으로 검색시 팔로우 하는지 여부를 체크하기 위해서 로그인 멤버로 팔로우 객체를 가져오는 메서드 -->
+	<select id="followStringSearch" parameterType="List"
+		resultType="Follow">
+		select * from follow where follower_id like CONCAT('%',#{searchKeyword},'%')
+	</select>
+	
+	    <!-- 비밀번호 찾기 인증성공 시 새로운 비밀번호 설정하도록 -->
+    <update id="newPassword" parameterType="memberUpdate">
+    update member set member_password=#{new_member_password}, member_updatePassword_date=#{member_updatePassword_date} where member_id=#{member_id}
+    </update>
+	
+	<insert id="insertMemberInt" parameterType="Member">
+	insert into  introduction_view (member_id) values (#{member_id})
+	</insert>
+	
+	
+</mapper>
