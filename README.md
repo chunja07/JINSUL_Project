@@ -77,9 +77,10 @@ Please follow the development introduction below.)
 ## Front-End 주요 기능
 > 메인 페이지 검색(JINSUL_Project/JS/src/main/java/js/user/controller/MainPageController.java)
  * 키 입력에 따른 회원 검색(View Page와 연동)
-@ResponseBody
-	@RequestMapping(value = "/a/{search}", method = RequestMethod.POST)
-	public Map<String, List<Object>> search(Model model, HttpServletRequest request, HttpServletResponse response,
+	
+		@ResponseBody
+		@RequestMapping(value = "/a/{search}", method = RequestMethod.POST)
+		public Map<String, List<Object>> search(Model model, HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("search") String search, HttpSession session) throws Exception {
 		
 		Map<String, List<Object>> map = new HashMap<String, List<Object>>();
@@ -130,8 +131,8 @@ Please follow the development introduction below.)
  
 > 로그인 접속 화면
 
-public String login(HttpServletResponse response, Member member, Model model,
-			@CookieValue(value = "cookie") String cookieValue, HttpSession session, HttpServletRequest request, RedirectAttributes variable) {
+	public String login(HttpServletResponse response, Member member, Model model,
+			@CookieValue(value = "cookie") String cookieValue, HttpSession session, HttpServletRequest request, 			RedirectAttributes variable) {
 		// 입력한 정보의 아이디가 존재하는지 확인
 		Member isMember = loginservice.selectById(member);
 		// 존재한다면
@@ -178,7 +179,8 @@ public String login(HttpServletResponse response, Member member, Model model,
 ![image](https://user-images.githubusercontent.com/35492393/50625725-38c81780-0f6d-11e9-9802-79bc0106affb.png)
 
 > 로그인 완료시 팔로우 회원 출력
-public String mainPage(Member member, Model model, HttpSession session) {
+
+	public String mainPage(Member member, Model model, HttpSession session) {
 		// 멤버가 로그인 했을 경우
 		if (session.getAttribute("Member") != null) {
 			Gson gson = new Gson();
