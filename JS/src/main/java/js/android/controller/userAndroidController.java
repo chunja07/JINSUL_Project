@@ -62,6 +62,8 @@ public class userAndroidController {
 		value.put("intro", intro_value);
 
 		String json = null;
+		String chop;
+		
 		try {
 			json = new ObjectMapper().writeValueAsString(value);
 			json = URLEncoder.encode(json, "UTF-8");
